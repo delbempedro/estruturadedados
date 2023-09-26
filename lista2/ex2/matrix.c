@@ -106,7 +106,7 @@ Matriz mult_mat(Matriz A,Matriz B, int num){
 
                 //declara a multiplicação de Aij por Bij
                 int mul = A.values[i][j]*B.values[i][j];
-
+                printf("%d %d %s",mul,num,"\n");
                 //eleva mul a num
                 result[i][j] =  elevar(mul,num);
             }
