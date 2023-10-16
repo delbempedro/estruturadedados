@@ -167,7 +167,7 @@ lista *inverter(lista* l){
     //salva o tamnho da lista original
     int tam = tamanho(l);
 
-    //cria um ponteiro para no e o aponta para p inicio de l e dois ponteiros auxiliares
+    //cria um ponteiro para no, e o aponta para p inicio de l, e dois ponteiros auxiliares
     no *n, *p1, *p2;
     n = l->ini;
 
@@ -175,32 +175,29 @@ lista *inverter(lista* l){
     lista *invertida = criar();
 
     //finaliza invertida com o começo da lista original
-    invertida -> fim = n;
+    //invertida -> fim = n;
 
-    printf("1\n");
+    //faz a mudança de ponteiros para o primeiro item
+    //faz a mudança de ponteiros para o primeiro item
     //faz a mudança de ponteiros para o primeiro item
     p1 = n->prox;
     p2 = p1->prox;
 
     //faz a mudança de ponteiros do item 2 até o penúltimo
     for(int i=0;i<tam-2;i++){
-    printf("2\n");
+
        p1->prox = n;
-       printf("3\n");
        n = p1;
-       printf("4\n");
        p1 = p2;
-       printf("5\n");
        printf("%d%s",p1->info,"oi\n");
        p2 = p1->prox;
-printf("6\n");
+
     }
 
-    //inicia a lista invertida com o fim da lista inicial
-    invertida -> ini = p2;
-printf("7\n");
-    invertida -> fim = NULL;
-printf("8\n");
+    //aponta o inicio e o fim da lista invertida para as posições inversas da lista original
+    invertida -> ini = l -> fim;
+    invertida -> fim = l -> ini;
+
     //retorna a lista invertida
     return invertida;
 
