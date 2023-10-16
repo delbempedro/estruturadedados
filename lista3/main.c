@@ -12,13 +12,15 @@ void main(){
         inserir(l,ele);
     }
 
-    value = 5;
+    lista *inv = inverter(l);
+    printf("saiu\n");
+    printf("%d%s",tamanho(inv),"\n");
+/*    for(int i=0;i<10;i++){
+        value = i;
+        printf("%d%s",get(inv,ele),"\n");
+    }*/
 
-    eliminar(l,ele); 
-
-    int valor = get(l,ele);
-
-    printf("%d%s",valor,"\n");
+    
 
     //printf()"%d%s%d%s",l->ini->info," ",l->fim->info,"\n");
 

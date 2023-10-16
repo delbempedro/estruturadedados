@@ -28,6 +28,6 @@ int tamanho(lista* l);
 //verifica se o item está na lista
 int in(lista* l,item* x);
 //inverte a lista
-void inverter(lista* l);
+lista *inverter(lista* l);
 //retorna o item de posição x
 int get(lista* l,int *x);
