@@ -38,7 +38,7 @@ e um int que determinará quantos itens serão inseridos*/
             int num;
 
             //pede ao usuário a quantidade de itens a serem inseridos e salva este valor
-            printf("Dite quantos itens deseja inserir\n");
+            printf("Digite quantos itens deseja inserir\n");
             scanf("%d",&num);
 
             //pede ao usuário os elemento que ele deseja inserir e inicia um loop inserindo num elementos na lista
@@ -60,23 +60,27 @@ e um int que determinará quantos endereços serão obtidos*/
             int num;
             int end;
 
-            //declara o ponteiro para tratamento de erro
+            //declara o ponteiro para tratamento de erro e o aponta para a variável err
             int *erro;
+            int err;
+            erro = &err;
 
             //pede ao usuário a quantidade de endereços a serem obtidos e salva este valor
             printf("Dite quantos endereços deseja obter\n");
             scanf("%d",&num);
 
             //pede ao usuário os itens que ele deseja obter o endereço e inicia um loop obtendo num endereços da lista
+            printf("Digite o(s) item(ns) do(s) qual(is) deseja obter o(s) endereço(s)\n");
             for(int i=0;i<num;i++){
 
-                printf("Digite o item do qual deseja obter o endereço\n");
                 scanf("%d",&value);
+
                 end = obter(l,ele,erro);
-                if(!erro){//se não houve errp
+
+                if(!err){//se não houve erro
                     printf("%s%d%s%d%s","O endereço do item ",value," é ",end,"\n");
                 }else{
-                    printf("%s%d%s","O item ",value,"não está na lista\n");
+                    printf("%s%d%s","O item ",value," não está na lista\n");
                 }
                 
 
@@ -125,9 +129,9 @@ e um int que determinará quantos itens serão procurados na lista*/
             scanf("%d",&num);
 
             //pede ao usuário os itens que ele verificar se estão na lista e inicia um loop verificando num itens da lista
+            printf("Digite o(s) item(ns), que deseja verificar se está(ão) na lista\n");
             for(int i=0;i<num;i++){
                 
-                printf("Digite o item, que deseja verificar se está na lista\n");
                 scanf("%d",&value);
 
                 if(in(l,ele)){
@@ -154,24 +158,27 @@ e um int que determinará quantos itens serão obtidos*/
             int num;
             int item;
 
-            //declara o ponteiro para tratamento de erro
+            //declara o ponteiro para tratamento de erro e o aponta para a variável err
             int *erro;
+            int err;
+            erro = &err;
 
             //pede ao usuário a quantidade de itens a serem obtidos e salva este valor
             printf("Dite quantos itens deseja obter\n");
             scanf("%d",&num);
 
             //pede ao usuário os endereços dos itens que ele deseja obter e inicia um loop obtendo num endereços da lista
+            printf("Digite o(s) endereço(s) do(s) item(ns) que deseja obter\n");
             for(int i=0;i<num;i++){
 
-                printf("Digite o endereço do item que deseja obter\n");
                 scanf("%d",&value);
+                
                 item = get(l,ele,erro);
-                if(!erro){
+                if(!err){
                     printf("%s%d%s%d%s","O item do endereço ",value," é ",item,"\n");
 
                 }else{
-                    printf("%s%d%s","A lista é menor que o endereço ",value," fornecido\n");
+                    printf("%s%d%s","0 endereço ",value," não existe na lista\n");
                 }
                 
             }
@@ -196,3 +203,15 @@ e um int que determinará quantos itens serão obtidos*/
     limpa(l);
 
 }
+
+/*
+o código foi escrito por:
+Pedro Calligaris Delbem
+N°USP: 5255417
+e
+Tony Maciel Alexander
+N°USP: 12624850
+no  editor vscode e utilizando a simulação de terminal
+do mesmo, compilou-se o código com o comando ' gcc -o main.exe main.c ' e
+executou-se o código com o comando ' ./main.exe ' o que inicializa o código
+*/

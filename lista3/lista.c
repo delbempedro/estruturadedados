@@ -71,17 +71,19 @@ int obter(lista* l,item* x, int *erro){
     //define, como padrão, a ausência de erro
     *erro = 0;
 
-    //enquanto info de n não for igual ao item, adiciona-se 1 a end
-    while(n->info!=*x){
-
-        end++;
-        n = n-> prox;
-
-    }
-    if(n==NULL){//se o item não estiver na lista
+    if(!in(l,x)){//se o item não estiver na lista
         *erro = 1;
-        return;
-    }else return end;//retorna o endereço do item na lista
+        return -1;
+    }else{
+        //enquanto info de n não for igual ao item, adiciona-se 1 a end
+        while((n->info!=*x)&&(n!=NULL)){
+
+            end++;
+            n = n-> prox;
+
+        }
+        return end;//retorna o endereço do item na lista
+    }
 
 }
 
@@ -161,7 +163,7 @@ int tamanho(lista* l){
 //verifica se o item está na lista
 int in(lista* l,item* x){
 
-    //cria um ponteiro para no e o aponta para p inicio de l
+    //cria um ponteiro para no e o aponta para o inicio de l
     no *n;
     n = l->ini;
 
@@ -174,7 +176,7 @@ int in(lista* l,item* x){
         //muda n para o proximo no
         n = n->prox;
 
-    }if(n!=NULL){//item está na lista
+    }if((n!=NULL)&&(n->info==*x)){//item está na lista
 
     //atribui a retorna o valor que corresponde ao item estar na lista
     retorna = 1;
@@ -209,8 +211,10 @@ para a mesma, que será passado com parâmetro da função inseriresq*/
     int valor;
     pointer = &valor;
 
-    //define o ponteiro de erro da função get
+    //define o ponteiro de erro da função get e a vriável para o qual o mesmo aponta
     int *erro;
+    int err;
+    erro = &err;
 
     //inverte a lista
     for(i=0;i<tam;i++){
@@ -234,27 +238,37 @@ int get(lista* l,int *x, int *erro){
     no *n;
     n = l->ini;
 
-    //define a ausẽncia de erro, como padrão
+    //define, como padrão, a ausência de erro
     *erro = 0;
 
-    //inicia um loop até o x-éssimo no ou até o fim da lista (n=NULL)
-    int i = 0;
-    while((n!=NULL)&&(i<*x)){
+    //verifica se o enderço fornecido é válido
+    if(*x<0){
 
-        //muda n para o proximo no e incrementa i por 1
-        n = n->prox;
-        i++;
-        
-    }if(n!=NULL){//retorna o valor do x-éssimo no, se o no não for NULL
-
-        return n->info;
-
-    }else{//muda erro para 1, se o endereço fornecido for maior que a lista
-        
         *erro = 1;
-        return;
+
+    }else{//se o endereço não for negativo
+
+        //inicia um loop até o x-éssimo no ou até o fim da lista (n=NULL)
+        int i = 0;
+        while((n!=NULL)&&(i<*x)){
+
+            //muda n para o proximo no e incrementa i por 1
+            n = n->prox;
+            i++;
+            
+        }if(n!=NULL){//retorna o valor do x-éssimo no, se o no não for NULL
+
+            return n->info;
+
+        }else{//muda erro para 1, se o endereço fornecido for maior que a lista
+            
+            *erro = 1;
+            return -1;
 
     }
+
+    }
+    
 
 }
 
@@ -267,8 +281,10 @@ para a mesma, que será passado com parâmetro da função get*/
     int *pos;
     pos = &i;
 
-    //define o ponteiro de erro da função get
+    //define o ponteiro de erro da função get e a vriável para o qual o mesmo aponta
     int *erro;
+    int err;
+    erro = &err;
 
     //define tam como o tamanho de l
     int tam = tamanho(l);
