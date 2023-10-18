@@ -36,30 +36,8 @@ void inserir(lista* l,item* x){
 
 }
 
-//insere um item na lista à esquerda
-void inseriresq(lista* l,item* x){
-
-    //declara um ponteiro para no e aloca espaço de um no para o mesmo
-    no *n = (no*)malloc(sizeof(no));
-
-    //salva x em info de n
-    n -> info = *x;
-    //inicializa prox de n como NULL
-    n -> prox = NULL;
-
-    //se l estiver vazia, aponta seu início para n, se não aponta 
-    if(l -> ini == NULL){
-
-        l -> ini = n;
-        l -> fim = n;
-
-    }else n -> prox = l -> ini;
-    l -> ini = n;
-
-}
-
 //retorna o endereço do item fornecido
-int obter(lista* l,item* x, int *erro){
+int obter(lista* l,item* x){
 
     //cria o contador de endereço
     int end = 0;
@@ -76,9 +54,8 @@ int obter(lista* l,item* x, int *erro){
 
     }
     if(n==NULL){//se o item não estiver na lista
-        //printf("Este item não está na lista\n");
-        *erro = 1; //
-        return;
+        printf("Este item não está na lista\n");
+        return -1;
     }else return end;//retorna o endereço do item na lista
 
 }
@@ -187,35 +164,39 @@ int in(lista* l,item* x){
 //inverte a lista
 lista *inverter(lista* l){
 
-/*declara a variável de iteração e o ponteiro, que apontará
-para a mesma, que será passado com parâmetro da função inseriresq*/
-    int i;
-    int *value;
-    value = &i;
-
-    //define tam como o tamanho de l
+    //salva o tamnho da lista original
     int tam = tamanho(l);
 
-    //cria um ponteiro para no
-    no *n;
+    //cria um ponteiro para no, e o aponta para p inicio de l, e dois ponteiros auxiliares
+    no *n, *p1, *p2;
+    n = l->ini;
 
     //cria a lista que será retornada
     lista *invertida = criar();
-    
-    //declara as variáveis que receberão os valores da lista
-    int *pointer;
-    int valor;
-    pointer = &valor;
 
-    //inverte a lista
-    for(i=0;i<tam;i++){
-        
-        valor = get(l,value);
-        inseriresq(invertida,pointer);
+    //finaliza invertida com o começo da lista original
+    //invertida -> fim = n;
+
+    //faz a mudança de ponteiros para o primeiro item
+    //faz a mudança de ponteiros para o primeiro item
+    //faz a mudança de ponteiros para o primeiro item
+    p1 = n->prox;
+    p2 = p1->prox;
+
+    //faz a mudança de ponteiros do item 2 até o penúltimo
+    for(int i=0;i<tam-2;i++){
+
+       p1->prox = n;
+       n = p1;
+       p1 = p2;
+       printf("%d%s",p1->info,"oi\n");
+       p2 = p1->prox;
 
     }
 
-    limpa(l);
+    //aponta o inicio e o fim da lista invertida para as posições inversas da lista original
+    invertida -> ini = l -> fim;
+    invertida -> fim = l -> ini;
 
     //retorna a lista invertida
     return invertida;
@@ -245,50 +226,6 @@ int get(lista* l,int *x){
         
         printf("A lista é menor que o endereço fornecido\n");
         return -1;
-
-    }
-
-}
-
-//imprimi, em sequência, os itens atuais da lista
-void imprimir(lista *l){
-
-    /*declara a variável de iteração e o ponteiro, que apontará
-para a mesma, que será passado com parâmetro da função get*/
-    int i;
-    int *pos;
-    pos = &i;
-
-    //define tam como o tamanho de l
-    int tam = tamanho(l);
-
-    //inicia o loop imprimindo os itens de posição i-éssima
-    for(i=0;i<tam;i++){
-
-        printf("%d%s",get(l,pos),"\n");
-
-    }    
-
-}
-
-//limpa a memória alocada para a lista
-void limpa(lista *l){
-
-    //cria um ponteiro para no e o aponta para o começo da lista
-    no *n;
-    n = l -> ini;
-
-    //elimina os itens da lista até ela estar vazia
-    while(n!=NULL){
-
-        
-        /*define uma variável para receber o item a ser eliminado e aponta
-o ponteiro de no para o começo da lista*/
-        item *item = &n->info;
-        n = l -> ini;
-
-        //elimina o primeiro item da lista
-        eliminar(l,item);
 
     }
 

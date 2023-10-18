@@ -19,10 +19,8 @@ typedef struct{
 lista *criar();
 //insere um item na lista
 void inserir(lista* l,item* x);
-//insere um item na lista à esquerda
-void inseriresq(lista* l,item* x);
 //retorna o endereço do item fornecido
-int obter(lista* l,item* x, int *erro);
+int obter(lista* l,item* x);
 //elimina o item da lista
 void eliminar(lista* l,item* x);
 //retorna o tamanho da lista
@@ -33,7 +31,3 @@ int in(lista* l,item* x);
 lista *inverter(lista* l);
 //retorna o item de posição x
 int get(lista* l,int *x);
-//imprimi, em sequência, os itens atuais da lista
-void imprimir(lista *l);
-//limpa a memória alocada para a lista
-void limpa(lista *l);

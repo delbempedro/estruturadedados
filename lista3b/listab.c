@@ -20,46 +20,25 @@ void inserir(lista* l,item* x){
 
     //declara um ponteiro para no e aloca espaço de um no para o mesmo
     no *n = (no*)malloc(sizeof(no));
-
+printf("E\n");
     //salva x em info de n
     n -> info = *x;
+    printf("E\n");
     //inicializa prox de n como NULL
     n -> prox = NULL;
-
+printf("E\n");
     //se l estiver vazia, aponta seu início para n, se não aponta 
     if(l -> ini == NULL){
-
+printf("E\n");
         l -> ini = n;
-
+printf("E\n");
     }else l -> fim -> prox = n;
     l -> fim = n;
-
-}
-
-//insere um item na lista à esquerda
-void inseriresq(lista* l,item* x){
-
-    //declara um ponteiro para no e aloca espaço de um no para o mesmo
-    no *n = (no*)malloc(sizeof(no));
-
-    //salva x em info de n
-    n -> info = *x;
-    //inicializa prox de n como NULL
-    n -> prox = NULL;
-
-    //se l estiver vazia, aponta seu início para n, se não aponta 
-    if(l -> ini == NULL){
-
-        l -> ini = n;
-        l -> fim = n;
-
-    }else n -> prox = l -> ini;
-    l -> ini = n;
-
+printf("E\n");
 }
 
 //retorna o endereço do item fornecido
-int obter(lista* l,item* x, int *erro){
+int obter(lista* l,item* x){
 
     //cria o contador de endereço
     int end = 0;
@@ -76,9 +55,8 @@ int obter(lista* l,item* x, int *erro){
 
     }
     if(n==NULL){//se o item não estiver na lista
-        //printf("Este item não está na lista\n");
-        *erro = 1; //
-        return;
+        printf("Este item não está na lista\n");
+        return -1;
     }else return end;//retorna o endereço do item na lista
 
 }
@@ -187,35 +165,38 @@ int in(lista* l,item* x){
 //inverte a lista
 lista *inverter(lista* l){
 
-/*declara a variável de iteração e o ponteiro, que apontará
-para a mesma, que será passado com parâmetro da função inseriresq*/
-    int i;
-    int *value;
-    value = &i;
-
-    //define tam como o tamanho de l
+    //salva o tamnho da lista original e um ponteiro para inserir os itens na lista invertida
     int tam = tamanho(l);
+    int *value;
 
     //cria um ponteiro para no
     no *n;
 
     //cria a lista que será retornada
     lista *invertida = criar();
-    
-    //declara as variáveis que receberão os valores da lista
-    int *pointer;
-    int valor;
-    pointer = &valor;
 
+    //define o primeiro item da lista invertida como o ultimo da original
+    //invertida -> ini = l -> fim;
+    
     //inverte a lista
-    for(i=0;i<tam;i++){
+    for(int i=0;i<tam;i++){
         
-        valor = get(l,value);
-        inseriresq(invertida,pointer);
+        //aponta o ponteiro para no para o começo da lista original
+        n = l->ini;
+
+        // vai do começo da lista até o item de posição j-i para colocá-lo na posição i
+        for(int j=0;j<tam-i;j++){
+
+            //muda o ponteiro para o proximo item da lista
+            n = n->prox;
+
+        }
+
+        value = &n->info;
+printf("%d",&n->info);
+        inserir(invertida,value);
 
     }
-
-    limpa(l);
 
     //retorna a lista invertida
     return invertida;
@@ -245,50 +226,6 @@ int get(lista* l,int *x){
         
         printf("A lista é menor que o endereço fornecido\n");
         return -1;
-
-    }
-
-}
-
-//imprimi, em sequência, os itens atuais da lista
-void imprimir(lista *l){
-
-    /*declara a variável de iteração e o ponteiro, que apontará
-para a mesma, que será passado com parâmetro da função get*/
-    int i;
-    int *pos;
-    pos = &i;
-
-    //define tam como o tamanho de l
-    int tam = tamanho(l);
-
-    //inicia o loop imprimindo os itens de posição i-éssima
-    for(i=0;i<tam;i++){
-
-        printf("%d%s",get(l,pos),"\n");
-
-    }    
-
-}
-
-//limpa a memória alocada para a lista
-void limpa(lista *l){
-
-    //cria um ponteiro para no e o aponta para o começo da lista
-    no *n;
-    n = l -> ini;
-
-    //elimina os itens da lista até ela estar vazia
-    while(n!=NULL){
-
-        
-        /*define uma variável para receber o item a ser eliminado e aponta
-o ponteiro de no para o começo da lista*/
-        item *item = &n->info;
-        n = l -> ini;
-
-        //elimina o primeiro item da lista
-        eliminar(l,item);
 
     }
 

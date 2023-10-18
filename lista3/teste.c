@@ -11,17 +11,11 @@ void main(){
         value = i;
         inserir(l,ele);
     }
-
-    lista *inv = inverter(l);
-    printf("saiu\n");
-    printf("%d%s",tamanho(inv),"\n");
-/*    for(int i=0;i<10;i++){
-        value = i;
-        printf("%d%s",get(inv,ele),"\n");
-    }*/
-
+    value = 0;
     
+    lista *inv = inverter(l);
 
-    //printf()"%d%s%d%s",l->ini->info," ",l->fim->info,"\n");
+    imprimir(inv);
+    
 
 }
