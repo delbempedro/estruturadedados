@@ -32,7 +32,7 @@ int in(lista* l,item* x);
 //inverte a lista
 lista *inverter(lista* l);
 //retorna o item de posição x
-int get(lista* l,int *x);
+int get(lista* l,int *x,int *erro);
 //imprimi, em sequência, os itens atuais da lista
 void imprimir(lista *l);
 //limpa a memória alocada para a lista

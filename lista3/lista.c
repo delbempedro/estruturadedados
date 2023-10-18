@@ -68,16 +68,18 @@ int obter(lista* l,item* x, int *erro){
     no *n;
     n = l->ini;
 
+    //define, como padrão, a ausência de erro
+    *erro = 0;
+
     //enquanto info de n não for igual ao item, adiciona-se 1 a end
-    while((n->info!=*x)&&(n!=NULL)){
+    while(n->info!=*x){
 
         end++;
         n = n-> prox;
 
     }
     if(n==NULL){//se o item não estiver na lista
-        //printf("Este item não está na lista\n");
-        *erro = 1; //
+        *erro = 1;
         return;
     }else return end;//retorna o endereço do item na lista
 
@@ -207,10 +209,13 @@ para a mesma, que será passado com parâmetro da função inseriresq*/
     int valor;
     pointer = &valor;
 
+    //define o ponteiro de erro da função get
+    int *erro;
+
     //inverte a lista
     for(i=0;i<tam;i++){
         
-        valor = get(l,value);
+        valor = get(l,value,erro);
         inseriresq(invertida,pointer);
 
     }
@@ -223,11 +228,14 @@ para a mesma, que será passado com parâmetro da função inseriresq*/
 }
 
 //retorna o item de posição x
-int get(lista* l,int *x){
+int get(lista* l,int *x, int *erro){
 
     //cria um ponteiro para no e o aponta para p inicio de l
     no *n;
     n = l->ini;
+
+    //define a ausẽncia de erro, como padrão
+    *erro = 0;
 
     //inicia um loop até o x-éssimo no ou até o fim da lista (n=NULL)
     int i = 0;
@@ -241,10 +249,10 @@ int get(lista* l,int *x){
 
         return n->info;
 
-    }else{//retorna uma mensagem de erro se o endereço fornecido for maior que a lista
+    }else{//muda erro para 1, se o endereço fornecido for maior que a lista
         
-        printf("A lista é menor que o endereço fornecido\n");
-        return -1;
+        *erro = 1;
+        return;
 
     }
 
@@ -259,13 +267,16 @@ para a mesma, que será passado com parâmetro da função get*/
     int *pos;
     pos = &i;
 
+    //define o ponteiro de erro da função get
+    int *erro;
+
     //define tam como o tamanho de l
     int tam = tamanho(l);
 
     //inicia o loop imprimindo os itens de posição i-éssima
     for(i=0;i<tam;i++){
 
-        printf("%d%s",get(l,pos),"\n");
+        printf("%d%s",get(l,pos,erro),"\n");
 
     }    
 

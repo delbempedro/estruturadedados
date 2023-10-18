@@ -60,6 +60,9 @@ e um int que determinará quantos endereços serão obtidos*/
             int num;
             int end;
 
+            //declara o ponteiro para tratamento de erro
+            int *erro;
+
             //pede ao usuário a quantidade de endereços a serem obtidos e salva este valor
             printf("Dite quantos endereços deseja obter\n");
             scanf("%d",&num);
@@ -69,8 +72,13 @@ e um int que determinará quantos endereços serão obtidos*/
 
                 printf("Digite o item do qual deseja obter o endereço\n");
                 scanf("%d",&value);
-                end = obter(l,ele);
-                printf("%s%d%s%d%s","O endereço do item ",value," é ",end,"\n");
+                end = obter(l,ele,erro);
+                if(!erro){//se não houve errp
+                    printf("%s%d%s%d%s","O endereço do item ",value," é ",end,"\n");
+                }else{
+                    printf("%s%d%s","O item ",value,"não está na lista\n");
+                }
+                
 
             }
 
@@ -146,6 +154,9 @@ e um int que determinará quantos itens serão obtidos*/
             int num;
             int item;
 
+            //declara o ponteiro para tratamento de erro
+            int *erro;
+
             //pede ao usuário a quantidade de itens a serem obtidos e salva este valor
             printf("Dite quantos itens deseja obter\n");
             scanf("%d",&num);
@@ -155,9 +166,14 @@ e um int que determinará quantos itens serão obtidos*/
 
                 printf("Digite o endereço do item que deseja obter\n");
                 scanf("%d",&value);
-                item = get(l,ele);
-                printf("%s%d%s%d%s","O item do endereço ",value," é ",item,"\n");
+                item = get(l,ele,erro);
+                if(!erro){
+                    printf("%s%d%s%d%s","O item do endereço ",value," é ",item,"\n");
 
+                }else{
+                    printf("%s%d%s","A lista é menor que o endereço ",value," fornecido\n");
+                }
+                
             }
 
         }else if(NumOp==8){
