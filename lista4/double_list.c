@@ -122,30 +122,40 @@ void remover(lista *l, char *nome, int *erro){
         //declara ponteiros para nós auxiliares
         no *aux1,*aux2;
 
-        while(strcmp(n->name,nome)!=0){//passa para o próximo nó até encontrar o nome
+        if(l->ini!=l->fim){//se houver mais de um nome na lista
 
-            n = n->prox;
+            while(strcmp(n->name,nome)!=0){//passa para o próximo nó até encontrar o nome
 
-        }
-        if(n==l->ini){//se for passado o primeiro item
+                n = n->prox;
 
-            l->ini = l->ini->prox;
-            l->ini->ant = NULL;
-            free(n);
+            }
+            if(n==l->ini){//se for passado o primeiro item
 
-        }else if(n==l->fim){//se for passado o último item
+                l->ini = l->ini->prox;
+                l->ini->ant = NULL;
+                free(n);
 
-            l->fim = l->fim->ant;
-            l->fim->prox = NULL;
-            free(n);
+            }else if(n==l->fim){//se for passado o último item
 
-        }else{//se for passado um item intermediário
+                l->fim = l->fim->ant;
+                l->fim->prox = NULL;
+                free(n);
 
-            aux1 = n->ant;
-            aux2 = n->prox;
-            aux1->prox = aux2;
-            aux2->ant = aux1;
-            free(n);
+            }else{//se for passado um item intermediário
+
+                aux1 = n->ant;
+                aux2 = n->prox;
+                aux1->prox = aux2;
+                aux2->ant = aux1;
+                free(n);
+
+            }
+
+        }else{//se há só um nome na lista
+
+        l->ini = NULL;
+        l->fim = NULL;
+        free(n);
 
         }
 
