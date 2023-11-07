@@ -191,22 +191,25 @@ apontando-o para o começo da lista*/
 
 }
 
-//imprimi a lista
+//imprime a lista
 void printAll(lista *l){
 
-    /*declara o nó que apontará para o nó corrente da lista,
-apontando-o para o começo da lista*/
+    // imprime do começo ao fim
     no *n = l->ini;
-
-    //imprimi na tela todos os nomes da lista enquanto não chegar ao seu fim
+    printf("Frente para trás:\n");
     while(n!=NULL){
-
         printf("%s\n",n->name);
         n = n->prox;
-
     }
 
-
+    // imprime do fim ao começo
+    n = l->fim;
+    printf("Trás para frente:\n");
+    while(n != NULL) {
+        printf("%s\n", n->name);
+        n = n->ant;
+    }
+    
 }
 
 //verifica se a lista está vazia
